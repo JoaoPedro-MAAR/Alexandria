@@ -8,10 +8,6 @@ async function main() {
     const file = resolve('prisma', 'seed.json');
     const seed = JSON.parse(readFileSync(file));
 
-    seed.usuario.forEach(element => {
-        element.dt_nascimento = new Date(element.dt_nascimento);
-    });
-
     await prisma.usuario.createMany({
         data: seed.usuario
     });
